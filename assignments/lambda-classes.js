@@ -80,8 +80,8 @@ class Instructor extends Person{
     demo(subject){
         console.log(`Today we are learning about ${subject}.`);
     }
-    grade(student, subject){
-        console.log(`${student.name} receives a perfect score on ${subject}.`);
+    grade(studentObj, subject){
+        console.log(`${studentObj.name} receives a perfect score on ${subject}.`);
     }
 }
 
@@ -92,7 +92,7 @@ const Moriarty = new Instructor({
     gender: 'male',
     favLanguage: 'Mathematics',
     specialty: 'Organized Crime',
-    catchPhrase: `Do not inconvenience me!`
+    catchPhrase: 'Do not inconvenience me!'
 });
 
 console.log("Test 1 of Instructor Prototype");
@@ -107,7 +107,7 @@ const Guido = new Instructor({
     gender: 'male',
     favLanguage: 'Python',
     specialty: 'Python',
-    catchPhrase: `I am the benevolent dictator for life!`
+    catchPhrase: 'I am the benevolent dictator for life!'
 });
 
 console.log("Test 2 of Instructor Prototype");
@@ -167,7 +167,7 @@ const Anakin = new Student ({
     location: 'Coruscant',
     age: 30,
     gender: 'male',
-    previousBackground:'Jedi',
+    previousBackground:'Failed Jedi',
     className:'WEBPT5',
     favSubjects: ["Explicit binding", "Functional programming", "TDD"]
 });
@@ -178,7 +178,6 @@ Anakin.sprintChallenge("Applied JavaScript");
 
 /*
 #### Project Manager
-
 * Now that we have instructors and students, we'd be nowhere without our PM's
 * ProjectManagers are extensions of Instructors
 * ProjectManagers have the following unique props:
@@ -190,13 +189,61 @@ Anakin.sprintChallenge("Applied JavaScript");
   * 
 */
 
+class ProjectManager extends (Instructor){
+    constructor(attributes){
+        super(attributes);
+        this.gradClassName = attributes.gradClassName;
+        this.favInstructor = attributes.favInstructor;
+    }
+    standUp(channel){
+        console.log(`${this.name} announces to ${channel}, @channel standy times!`);
+    }
+    debugsCode(studentObj, subject){
+        console.log(`${this.name} debugs ${studentObj.name}'s code on ${subject}`);
+    }
+}
+
+const Jay = new ProjectManager({
+    name: 'Jay Landmsan',
+    location: 'Baltimore',
+    age: 50,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Micro-managing',
+    catchPhrase: "Good work!",
+    gradClassName: 'WEBPT5',
+    favInstructor: 'Cam Pope'
+})
+console.log("Test 1 of ProjectManager:")
+Jay.standUp("webpt5-help");
+Jay.debugsCode(Dean,"Advanced CSS");
+
+
+
+const Nate = new ProjectManager({
+    name: 'Nathan Boyette',
+    location: 'Oakland',
+    age: 25,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Functional programming',
+    catchPhrase: "Cool",
+    gradClassName: 'WEBPT5',
+    favInstructor: 'Cam Pope'
+});
+
+console.log("Test 2 of ProjectManager:");
+Nate.standUp("webpt-5-sprint03");
+Nate.debugsCode(Sam,"Advanced JavaScript");
 
 
 /*
 #### Stretch Problem
 
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+
 * Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+
 * Add a graduate method to a student.
   * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
   * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
