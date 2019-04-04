@@ -157,6 +157,7 @@ const Hermione = new Student ({
     favSubjects: ["Binary Trees", "Functional Programming", "Hoisting"]
 });
 
+console.log("Test 1 of Student Class")
 Hermione.listsSubjects();
 Hermione.PRAssignment("React");
 Hermione.sprintChallenge("Applied JavaScript");
@@ -172,6 +173,7 @@ const Anakin = new Student ({
     favSubjects: ["Explicit binding", "Functional programming", "TDD"]
 });
 
+console.log("Test 2 of Student Class")
 Anakin.listsSubjects();
 Anakin.PRAssignment("React");
 Anakin.sprintChallenge("Applied JavaScript");
