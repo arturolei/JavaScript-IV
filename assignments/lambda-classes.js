@@ -83,7 +83,20 @@ class Instructor extends Person{
     grade(studentObj, subject){
         console.log(`${studentObj.name} receives a perfect score on ${subject}.`);
     }
+    //* Stretch Goal 2: build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+    //IF I add the method to Instructor, it should be available by 
+    tabulatePoints(studentObj){
+        studentObj.grade = studentObj.grade - getRandomInt(100)
+        console.log(`${this.name} adjusted ${studentObj.name}'s grade; it's now: ${studentObj.grade}`)
+    }
+    
 }
+
+function getRandomInt(max) {
+    let plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+    return plusOrMinus * Math.floor(Math.random() * Math.floor(max));
+}
+  
 
 const Moriarty = new Instructor({
     name: 'James Moriarty',
@@ -134,6 +147,9 @@ class Student extends Person {
         this.previousBackground = attributes.previousBackground;
         this.className = attributes.className;
         this.favSubjects = attributes.favSubjects;
+
+        //Stretch Goal 1: Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+        this.grade = attributes.grade;
     }
     listsSubjects(){
         console.log(`These are the favorite subjects of ${this.name}:`)
@@ -145,16 +161,31 @@ class Student extends Person {
     sprintChallenge(subject){
         console.log(`${this.name} has begun sprint challenge on ${subject}.`);
     }
+    /* Stetch Goal 3:
+    * Add a graduate method to a student.
+    * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+    * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+    */ 
+    graduate(){
+        if(this.grade > 70){
+            console.log(`This student can graduate; ${this.name} has ${this.grade}%`)
+        } else(
+            console.log(`This student cannot graduate; ${this.name} has only ${this.grade}%`)
+        )
+    }
+
+    
 }
 
 const Hermione = new Student ({
     name: 'Hermione Granger',
     location: 'London',
-    age: 30,
-    gender: 'female',
+    age:30,
+    gender:'female',
     previousBackground:'Witch',
     className:'WEBPT5',
-    favSubjects: ["Binary Trees", "Functional Programming", "Hoisting"]
+    favSubjects: ["Binary Trees", "Functional Programming", "Hoisting"],
+    grade:100
 });
 
 console.log("Test 1 of Student Class")
@@ -170,7 +201,8 @@ const Anakin = new Student ({
     gender: 'male',
     previousBackground:'Failed Jedi',
     className:'WEBPT5',
-    favSubjects: ["Explicit binding", "Functional programming", "TDD"]
+    favSubjects: ["Explicit binding", "Functional programming", "TDD"],
+    grade:75
 });
 
 console.log("Test 2 of Student Class")
@@ -206,7 +238,7 @@ class ProjectManager extends (Instructor){
 }
 
 const Jay = new ProjectManager({
-    name: 'Jay Landmsan',
+    name: 'Jay Landsman',
     location: 'Baltimore',
     age: 50,
     gender: 'male',
@@ -218,7 +250,7 @@ const Jay = new ProjectManager({
 })
 console.log("Test 1 of ProjectManager:")
 Jay.standUp("webpt5-help");
-Jay.debugsCode(Dean,"Advanced CSS");
+Jay.debugsCode(Anakin,"Advanced CSS");
 
 
 
@@ -236,7 +268,7 @@ const Nate = new ProjectManager({
 
 console.log("Test 2 of ProjectManager:");
 Nate.standUp("webpt-5-sprint03");
-Nate.debugsCode(Sam,"Advanced JavaScript");
+Nate.debugsCode(Hermione,"Advanced JavaScript");
 
 
 /*
@@ -244,13 +276,23 @@ Nate.debugsCode(Sam,"Advanced JavaScript");
 
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
 
+/*
 * Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
-
-* Add a graduate method to a student.
-  * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
-  * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+console.log("Test of tabulate Method: Instructor");
+Moriarty.tabulatePoints(Hermione);
 
+console.log("Test of tabulatePoints method: PM")
+Nate.tabulatePoints(Anakin);
+
+/*
+* Add a graduate method to a student.
+* This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+* If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+*/
+console.log("Test of graduate method");
+Hermione.graduate();
+Anakin.graduate();
 
 
 
