@@ -109,8 +109,31 @@ const fred = new Instructor({
 
 #### Stretch Problem
 
-* Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
-* Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+* [X] Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+
+* [X] Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+
 * Add a graduate method to a student.
   * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
   * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+
+## Reflections, Standup Report Materials
+
+### URL for Pull Request
+[https://github.com/arturolei/JavaScript-IV/pull/1](https://github.com/arturolei/JavaScript-IV/pull/1)
+
+### What Did You Work On Today:
+I reviewed prototypical inheritance in JavaScript and finished the Stretch Goals for JavaScript IV
+
+### What Do I Need to Do For Tomorrow:
+I need to review explicit binding and other properties of `this` in preparation for the 5th day sprint. 
+
+### Breakthroughs/Challenges 
+
+#### Blockers 
+- I still do not clearly understand hoisting. I probably need to read up on this more. 
+- I can employ and understand superficially what it does but do not really understand what is happening under the hood with `object.create`; 
+- I am not able to explain how prototypical inheritance differs from classical inheritance.
+
+#### Breakthroughs
+- I am comfortable using the syntactical sugar of `class` in Javascript. 

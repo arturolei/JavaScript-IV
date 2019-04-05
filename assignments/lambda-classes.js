@@ -92,6 +92,7 @@ class Instructor extends Person{
     
 }
 
+//For Stretch Goal 2, I created a getRandomInt function that use Math.random to get a random int (either positive or negative)
 function getRandomInt(max) {
     let plusOrMinus = Math.random() < 0.5 ? -1 : 1;
     return plusOrMinus * Math.floor(Math.random() * Math.floor(max));
